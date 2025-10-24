@@ -46,6 +46,11 @@ yarn-error.log*
 .env
 .env.local
 .env.production
+.env.*
+
+# API Keys (if accidentally added to script)
+*api-key*
+*api_key*
 
 # Backup files
 *.bak
