@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALKU // Senior Advisor // Miltton & Nordic West Office</title>
+    <link rel="stylesheet" href="styles2.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="tunnelCanvas"></canvas>
+    
+    <div class="crt-overlay"></div>
+    
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget" class="chatbot-widget">
+        <button id="chat-toggle" class="chat-toggle" aria-label="Toggle chat">
+            <span class="chat-icon">💬</span>
+            <span class="chat-text">PEREZHIVANIE AI</span>
+        </button>
+        
+        <div id="chat-window" class="chat-window">
+            <div class="chat-header">
+                <div class="chat-header-title">
+                    <span class="chat-header-icon">🤖</span>
+                    <span>PEREZHIVANIE AI</span>
+                </div>
+                <button id="chat-close" class="chat-close" aria-label="Close chat">×</button>
+            </div>
+            
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-message bot-message">
+                    <div class="message-content">
+                        <strong>Perezhivanie AI:</strong> Welcome! I'm here to discuss Vygotskian concepts, development theory, and the intersection of culture and cognition. How can I help you explore these ideas?
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    id="chat-input" 
+                    class="chat-input" 
+                    placeholder="Ask about environment, development, interaction..."
+                    autocomplete="off"
+                />
+                <button id="chat-send" class="chat-send" aria-label="Send message">→</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="glitch" data-text="ALKU">ALKU</div>
+            <div class="subtitle">Senior Advisor // Miltton & Nordic West Office</div>
+            <div class="scanline"></div>
+        </header>
+
+        <nav class="nav">
+            <a href="#environment" class="nav-link">Environment</a>
+            <a href="#perezhivanie" class="nav-link">Perezhivanie</a>
+            <a href="#interaction" class="nav-link">Interaction</a>
+            <a href="#about" class="nav-link">About</a>
+        </nav>
+
+        <main class="content">
+            <section id="environment" class="section">
+                <h2 class="section-title">THE ENVIRONMENT AS SOURCE</h2>
+                <div class="plasma-bg"></div>
+                <div class="text-content">
+                    <p class="quote">
+                        "The environment's role in the development of higher, specifically human characteristics 
+                        and forms of activity is as a <span class="highlight">source of development</span>"
+                        <span class="attribution">— L.S. Vygotsky, 1934</span>
+                    </p>
+                    <p>
+                        Just as Second Reality demonstrated how raw technical constraints could birth 
+                        unprecedented creative expression, Vygotsky showed us how the social environment 
+                        acts not as a mere background, but as the <em>active source</em> of human development.
+                    </p>
+                    <p>
+                        The demoscene emerged from limitations—64kb, 640x480, tracker music. 
+                        Yet within these constraints, ideal forms crystallized: tunnels, plasma effects, 
+                        synchronized audiovisuals. Similarly, we develop not despite our environment, 
+                        but <em>through</em> its affordances and constraints.
+                    </p>
+                </div>
+            </section>
+
+            <section id="perezhivanie" class="section">
+                <h2 class="section-title">PEREZHIVANIE // LIVED EXPERIENCE</h2>
+                <div class="starfield"></div>
+                <div class="text-content">
+                    <p class="quote">
+                        "The emotional experience [perezhivanie] arising from any situation determines 
+                        what kind of influence this situation will have on the child."
+                    </p>
+                    <p>
+                        <strong>Perezhivanie</strong> — Neither pure emotion nor pure cognition, but the 
+                        unity of person and situation. The same demo watched by different viewers produces 
+                        different experiences: one sees technical mastery, another feels nostalgic wonder, 
+                        a third perceives mathematical beauty.
+                    </p>
+                    <div class="experience-grid">
+                        <div class="exp-box">
+                            <div class="box-title">TECHNICAL</div>
+                            <div class="box-content">Assembly optimization, VGA mode-x, palette rotation</div>
+                        </div>
+                        <div class="exp-box">
+                            <div class="box-title">AESTHETIC</div>
+                            <div class="box-content">Synchronized motion, color harmony, rhythmic flow</div>
+                        </div>
+                        <div class="exp-box">
+                            <div class="box-title">CULTURAL</div>
+                            <div class="box-content">Scene identity, digital underground, creative rebellion</div>
+                        </div>
+                    </div>
+                    <p>
+                        The same environment—the same code, the same pixels—refracts through different 
+                        prisms of experience. This is perezhivanie: the unit of analysis that captures 
+                        both situation and person in their unity.
+                    </p>
+                </div>
+            </section>
+
+            <section id="interaction" class="section">
+                <h2 class="section-title">IDEAL FORMS // RUDIMENTARY FORMS</h2>
+                <div class="text-content">
+                    <p class="quote">
+                        "The interaction between the ideal form which exists in the environment and 
+                        the rudimentary form which a child possesses"
+                    </p>
+                    <p>
+                        What makes Second Reality legendary isn't just its technical achievement—it's how 
+                        it crystallized an <em>ideal form</em> that influenced countless coders, artists, 
+                        and designers who followed. The rudimentary forms in newcomers (basic programming 
+                        knowledge, aesthetic sensibility) interacted with this ideal form to produce new 
+                        generations of creators.
+                    </p>
+                    <div class="interaction-diagram">
+                        <div class="form rudimentary">
+                            <div class="form-label">RUDIMENTARY</div>
+                            <div class="form-desc">Raw potential<br>Basic capabilities<br>Emerging skills</div>
+                        </div>
+                        <div class="interaction-arrow">⟷</div>
+                        <div class="form ideal">
+                            <div class="form-label">IDEAL</div>
+                            <div class="form-desc">Cultural achievement<br>Perfected form<br>Historical crystallization</div>
+                        </div>
+                    </div>
+                    <p>
+                        This is the mechanism of cultural transmission: not copying, but <em>interaction</em>. 
+                        The ideal form doesn't replace the rudimentary—it guides its transformation. 
+                        The learner doesn't become the master; they become themselves through engagement 
+                        with mastery.
+                    </p>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <h2 class="section-title">ABOUT // CONTACT</h2>
+                <div class="text-content about-content">
+                    <div class="profile-section">
+                        <h3>Alku</h3>
+                        <p class="role">Senior Advisor</p>
+                        <p class="organization">Miltton & Nordic West Office</p>
+                    </div>
+                    
+                    <div class="philosophy-section">
+                        <p>
+                            My work exists at the intersection of strategic communication, cultural development, 
+                            and the social construction of meaning. Drawing from Vygotskian theory and digital 
+                            culture, I help organizations understand that communication isn't transmission—it's 
+                            the creation of shared meaning through interaction.
+                        </p>
+                        <p>
+                            Like the demoscene, which transformed technical constraints into aesthetic innovation, 
+                            I believe in finding creative solutions within real-world limitations. The environment 
+                            is not a obstacle to overcome, but the very source of development itself.
+                        </p>
+                    </div>
+
+                    <div class="contact-section">
+                        <h3>Connect</h3>
+                        <div class="contact-links">
+                            <a href="https://www.miltton.com" class="contact-link" target="_blank">Miltton</a>
+                            <a href="https://nordicwestoffice.com" class="contact-link" target="_blank">Nordic West Office</a>
+                            <a href="mailto:alku@miltton.com" class="contact-link">Email</a>
+                            <a href="https://www.linkedin.com/in/alkusiren/" class="contact-link" target="_blank">LinkedIn</a>
+                        </div>
+                    </div>
+
+                    <div class="colophon">
+                        <p>
+                            <strong>Colophon:</strong> This site pays homage to Future Crew's Second Reality (1993) 
+                            and L.S. Vygotsky's lecture "The Problem of the Environment" (1934). Built with HTML5 
+                            Canvas, CSS animations, and vanilla JavaScript. The tunnel effect, plasma background, 
+                            and CRT aesthetics reference demoscene techniques while the conceptual framework draws 
+                            from cultural-historical psychology.
+                        </p>
+                        <p class="signature">
+                            "Without social interaction, we can never develop any of the attributes and 
+                            characteristics which have developed as a result of the historical evolution 
+                            of all humankind."
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-left">© 2025 ALKU</div>
+                <div class="footer-center">ENVIRONMENT × EXPERIENCE × INTERACTION</div>
+                <div class="footer-right">VYGOTSKY × DEMOSCENE</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
