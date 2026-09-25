@@ -362,7 +362,7 @@ const demoResponses = {
     
     'interaction': 'Development happens through interaction between ideal and rudimentary forms. The child doesn\'t copy adult speech—they interact with it, transform it, make it their own. This is why social interaction is the mechanism, not just the context, of development.',
     
-    'zone': 'The Zone of Proximal Development (ZPD) reveals what a child can do with assistance today, they can do independently tomorrow. It\'s not measuring what is, but what is <em>becoming</em>. The ZPD shows development as process, not product.',
+    'zone': 'The Zone of Proximal Development (ZPD) reveals that what a child can do with assistance today, they can do independently tomorrow. It\'s not measuring what is, but what is <em>becoming</em>. The ZPD shows development as process, not product.',
     
     'demoscene': 'Fascinating connection! The demoscene demonstrates Vygotskian principles: ideal forms (legendary demos like Second Reality) guide newcomers, communities provide scaffolding, and constraints (64kb, specific hardware) become the very source of creative development. Cultural tools shape what becomes possible.',
     
