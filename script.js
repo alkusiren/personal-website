@@ -1,3 +1,14 @@
+// Motion preference: honours prefers-reduced-motion and a stored choice (WCAG 2.2.2)
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+let motionPaused = reducedMotionQuery.matches;
+try {
+    const storedMotion = localStorage.getItem('motion');
+    if (storedMotion === 'paused') motionPaused = true;
+    if (storedMotion === 'playing') motionPaused = false;
+} catch (e) {}
+document.documentElement.classList.toggle('motion-paused', motionPaused);
+document.documentElement.classList.toggle('motion-allowed', !motionPaused);
+
 // Tunnel Effect (inspired by Second Reality)
 const canvas = document.getElementById('tunnelCanvas');
 const ctx = canvas.getContext('2d');
@@ -75,7 +86,24 @@ function animate() {
     animationId = requestAnimationFrame(animate);
 }
 
-animate();
+function stopTunnel() {
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    }
+}
+
+if (motionPaused) {
+    drawTunnel();
+} else {
+    animate();
+}
+
+window.addEventListener('resize', () => {
+    if (motionPaused) {
+        drawTunnel();
+    }
+});
 
 // Smooth scroll for navigation
 document.querySelectorAll('.nav-link').forEach(link => {
@@ -86,7 +114,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
         
         if (targetSection) {
             targetSection.scrollIntoView({
-                behavior: 'smooth',
+                behavior: motionPaused ? 'auto' : 'smooth',
                 block: 'start'
             });
         }
@@ -95,6 +123,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
 // Parallax effect for sections
 window.addEventListener('scroll', () => {
+    if (motionPaused) return;
     const scrolled = window.pageYOffset;
     const sections = document.querySelectorAll('.section');
     
@@ -120,7 +149,7 @@ function triggerGlitch() {
 }
 
 setInterval(() => {
-    if (Math.random() > 0.7) {
+    if (!motionPaused && Math.random() > 0.7) {
         triggerGlitch();
     }
 }, 5000);
@@ -131,6 +160,7 @@ plasmaBackgrounds.forEach(plasma => {
     let hue = Math.random() * 360;
     
     setInterval(() => {
+        if (motionPaused) return;
         hue = (hue + 1) % 360;
         plasma.style.filter = `hue-rotate(${hue}deg) brightness(1.2)`;
     }, 50);
@@ -153,6 +183,7 @@ const forms = document.querySelectorAll('.form');
 let interactionDirection = 1;
 
 setInterval(() => {
+    if (motionPaused) return;
     forms.forEach((form, index) => {
         const scale = 1 + (Math.sin(Date.now() * 0.001 + index) * 0.05);
         form.style.transform = `scale(${scale})`;
@@ -167,6 +198,7 @@ setInterval(() => {
 
 // Starfield animation with mouse movement
 document.addEventListener('mousemove', (e) => {
+    if (motionPaused) return;
     const starfields = document.querySelectorAll('.starfield');
     const mouseX = e.clientX / window.innerWidth - 0.5;
     const mouseY = e.clientY / window.innerHeight - 0.5;
@@ -181,7 +213,7 @@ document.addEventListener('mousemove', (e) => {
 // Add scan line effect to sections on scroll
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !motionPaused) {
             entry.target.style.animation = 'section-scan 1s ease-out';
             
             setTimeout(() => {
@@ -218,6 +250,10 @@ const quoteObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains('typed')) {
             entry.target.classList.add('typed');
+            if (motionPaused) {
+                quoteObserver.unobserve(entry.target);
+                return;
+            }
             const originalText = entry.target.textContent;
             entry.target.textContent = '';
             
@@ -296,10 +332,9 @@ function createMatrixRain() {
 // Performance optimization: pause animations when tab is not visible
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        if (animationId) {
-            cancelAnimationFrame(animationId);
-        }
-    } else {
+        stopTunnel();
+    } else if (!motionPaused) {
+        stopTunnel();
         animate();
     }
 });
@@ -496,3 +531,52 @@ setTimeout(() => {
     });
 }, 1000);
 
+// Pause and resume all motion (WCAG 2.2.2 Pause, Stop, Hide)
+const motionToggle = document.getElementById('motion-toggle');
+
+function applyMotionState() {
+    document.documentElement.classList.toggle('motion-paused', motionPaused);
+    document.documentElement.classList.toggle('motion-allowed', !motionPaused);
+    if (motionToggle) {
+        motionToggle.textContent = motionPaused ? 'Play animation' : 'Pause animation';
+    }
+    if (motionPaused) {
+        stopTunnel();
+        drawTunnel();
+        forms.forEach(form => {
+            form.style.transform = '';
+        });
+        const arrow = document.querySelector('.interaction-arrow');
+        if (arrow) {
+            arrow.style.transform = '';
+        }
+    } else if (!animationId && !document.hidden) {
+        animate();
+    }
+}
+
+if (motionToggle) {
+    motionToggle.hidden = false;
+    motionToggle.addEventListener('click', () => {
+        motionPaused = !motionPaused;
+        try {
+            localStorage.setItem('motion', motionPaused ? 'paused' : 'playing');
+        } catch (e) {}
+        applyMotionState();
+    });
+}
+
+if (reducedMotionQuery.addEventListener) {
+    reducedMotionQuery.addEventListener('change', (event) => {
+        let storedMotion = null;
+        try {
+            storedMotion = localStorage.getItem('motion');
+        } catch (e) {}
+        if (storedMotion === null) {
+            motionPaused = event.matches;
+            applyMotionState();
+        }
+    });
+}
+
+applyMotionState();

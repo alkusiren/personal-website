@@ -906,3 +906,60 @@ html {
     }
 }
 
+/* Keep decorative backgrounds inside their sections so that phones do not scroll sideways */
+.section {
+    overflow-x: clip;
+}
+
+.works-list li {
+    overflow-wrap: anywhere;
+}
+
+@supports not (overflow-x: clip) {
+    .section {
+        overflow: hidden;
+    }
+}
+
+/* Pause and resume motion (WCAG 2.2.2) */
+.motion-toggle {
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 10000;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--primary-color);
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid var(--primary-color);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+}
+
+.motion-toggle[hidden] {
+    display: none;
+}
+
+.motion-toggle:hover,
+.motion-toggle:focus-visible {
+    box-shadow: 0 0 10px var(--glow-color);
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+html.motion-paused *,
+html.motion-paused *::before,
+html.motion-paused *::after {
+    animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(.motion-allowed) *,
+    html:not(.motion-allowed) *::before,
+    html:not(.motion-allowed) *::after {
+        animation-play-state: paused !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
